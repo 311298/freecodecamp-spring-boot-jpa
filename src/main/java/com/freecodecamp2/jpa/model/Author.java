@@ -1,14 +1,16 @@
-package com.freecodecamp2.jpa.entity;
+package com.freecodecamp2.jpa.model;
 
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.time.LocalDate;
-import java.time.LocalDateTime;
+import java.util.List;
 
 @Data
+@AllArgsConstructor
 @NoArgsConstructor
+//@Builder // for the builder design pattern
 @Entity
 @Table(name="AUTHOR_TBL")
 public class Author {
@@ -68,14 +70,24 @@ public class Author {
 
     private int age;
 
-    @Column(
-            updatable = false,
-            nullable = false
-    )
-    private LocalDateTime createdAt;
+    @ManyToMany(mappedBy = "authors") // list of the authors
+    private List<Course> courses;
 
-    @Column(
-            insertable = false
-    )
-    private LocalDateTime lastModified;
+//    @Column(
+//            updatable = false,
+//            nullable = false
+//    )
+//    private LocalDateTime createdAt;
+//
+//    @Column(
+//            insertable = false
+//    )
+//    private LocalDateTime lastModified;
 }
+
+/*
+    relationship between the entity can establish using the @OneToOne,
+    @OneToMany, @ManyToOne
+    it makes the data consistent and increase the performance of the database
+    performance
+*/

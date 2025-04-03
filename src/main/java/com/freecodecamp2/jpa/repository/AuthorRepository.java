@@ -1,6 +1,6 @@
 package com.freecodecamp2.jpa.repository;
 
-import com.freecodecamp2.jpa.entity.Author;
+import com.freecodecamp2.jpa.model.Author;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface AuthorRepository extends JpaRepository<Author, Integer> {
