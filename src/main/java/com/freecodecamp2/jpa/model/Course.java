@@ -1,23 +1,18 @@
 package com.freecodecamp2.jpa.model;
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
+import lombok.experimental.SuperBuilder;
 
 import java.util.List;
 
+@EqualsAndHashCode(callSuper = true)
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-@Builder
+@SuperBuilder
 @Entity
-public class Course {
-
-    @Id
-    @GeneratedValue
-    private Integer id;
+public class Course extends BaseEntity{
 
     private String name;
 

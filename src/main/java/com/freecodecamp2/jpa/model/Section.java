@@ -1,19 +1,18 @@
 package com.freecodecamp2.jpa.model;
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
+import lombok.experimental.SuperBuilder;
 
 import java.util.List;
 
+@EqualsAndHashCode(callSuper = true)
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-@Builder
+@SuperBuilder
 @Entity
-public class Section {
+public class Section extends BaseEntity{
 
     @Id
     @GeneratedValue
@@ -24,9 +23,7 @@ public class Section {
     private int sectionOrder;
 
     @ManyToOne
-    @JoinColumn(
-            name="course_id"
-    )
+    @JoinColumn(name="course_id")
     private Course course;
 
     @OneToMany(mappedBy = "section")

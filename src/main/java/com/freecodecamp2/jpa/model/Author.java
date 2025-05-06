@@ -3,22 +3,26 @@ package com.freecodecamp2.jpa.model;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
+import lombok.experimental.SuperBuilder;
 
 import java.util.List;
 
+@EqualsAndHashCode(callSuper = true)
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
 //@Builder // for the builder design pattern
+@SuperBuilder
 @Entity
 @Table(name="AUTHOR_TBL")
-public class Author {
+public class Author extends BaseEntity{
 
     /*
     assigned to the primary key of the table
     */
-    @Id
+    //@Id // BASE CLASS
     /*
     tells to generate the automated value for the primary key
     optional value are generation type and generator function
@@ -51,7 +55,7 @@ public class Author {
             allocationSize = 1 // increment value, by default 50
     )
     */
-    @GeneratedValue // by default strategy = GenerationType.AUTO
+    //@GeneratedValue // by default strategy = GenerationType.AUTO // BASE CLASS
     private Integer id; // always Reference type because default value is null not 0
 
     @Column(
@@ -72,17 +76,6 @@ public class Author {
 
     @ManyToMany(mappedBy = "authors") // list of the authors
     private List<Course> courses;
-
-//    @Column(
-//            updatable = false,
-//            nullable = false
-//    )
-//    private LocalDateTime createdAt;
-//
-//    @Column(
-//            insertable = false
-//    )
-//    private LocalDateTime lastModified;
 }
 
 /*
